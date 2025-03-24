@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {
+    "net9.0": {
       "coverlet.collector/6.0.2": {
         "type": "package",
         "build": {
@@ -1802,7 +1802,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net8.0": [
+    "net9.0": [
       "MSTest.TestAdapter >= 3.6.4",
       "MSTest.TestFramework >= 3.6.4",
       "Microsoft.NET.Test.Sdk >= 17.12.0",
@@ -1826,14 +1826,14 @@
         "C:\\Users\\qemil\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
-        "net8.0"
+        "net9.0"
       ],
       "sources": {
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
+        "net9.0": {
+          "targetAlias": "net9.0",
           "projectReferences": {
             "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\PresentationViewModel\\PresentationViewModel.csproj": {
               "projectPath": "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\PresentationViewModel\\PresentationViewModel.csproj"
@@ -1854,8 +1854,8 @@
       "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
-      "net8.0": {
-        "targetAlias": "net8.0",
+      "net9.0": {
+        "targetAlias": "net9.0",
         "dependencies": {
           "MSTest.TestAdapter": {
             "target": "Package",
@@ -1887,20 +1887,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[8.0.14, 8.0.14]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[8.0.14, 8.0.14]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[8.0.14, 8.0.14]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"

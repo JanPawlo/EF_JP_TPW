@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TP.ConcurrentProgramming.BusinessLogic")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+389fb57e5762db738e2133b510078739c6863f94")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+99e1fb37f2ae40c86faf0d755167857439b51aff")]
 [assembly: System.Reflection.AssemblyProductAttribute("TP.ConcurrentProgramming.BusinessLogic")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TP.ConcurrentProgramming.BusinessLogic")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

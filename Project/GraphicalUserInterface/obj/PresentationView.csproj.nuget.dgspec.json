@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\GraphicalUserInterface\\PresentationView.csproj": {}
+    "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\GraphicalUserInterface\\PresentationView.csproj": {}
   },
   "projects": {
-    "c:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\BusinessLogic\\BusinessLogic.csproj": {
+    "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\BusinessLogic\\BusinessLogic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\BusinessLogic\\BusinessLogic.csproj",
+        "projectUniqueName": "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\BusinessLogic\\BusinessLogic.csproj",
         "projectName": "TP.ConcurrentProgramming.BusinessLogic",
-        "projectPath": "c:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\BusinessLogic\\BusinessLogic.csproj",
+        "projectPath": "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\BusinessLogic\\BusinessLogic.csproj",
         "packagesPath": "C:\\Users\\qemil\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\BusinessLogic\\obj\\",
+        "outputPath": "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\BusinessLogic\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\qemil\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -26,8 +26,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "c:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\Data\\Data.csproj": {
-                "projectPath": "c:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\Data\\Data.csproj"
+              "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\Data\\Data.csproj": {
+                "projectPath": "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\Data\\Data.csproj"
               }
             }
           }
@@ -87,14 +87,14 @@
         }
       }
     },
-    "c:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\Data\\Data.csproj": {
+    "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\Data\\Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\Data\\Data.csproj",
+        "projectUniqueName": "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\Data\\Data.csproj",
         "projectName": "DataLayer",
-        "projectPath": "c:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\Data\\Data.csproj",
+        "projectPath": "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\Data\\Data.csproj",
         "packagesPath": "C:\\Users\\qemil\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\Data\\obj\\",
+        "outputPath": "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\qemil\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -166,14 +166,14 @@
         }
       }
     },
-    "c:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\GraphicalUserInterface\\PresentationView.csproj": {
+    "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\GraphicalUserInterface\\PresentationView.csproj": {
       "version": "4.2.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\GraphicalUserInterface\\PresentationView.csproj",
+        "projectUniqueName": "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\GraphicalUserInterface\\PresentationView.csproj",
         "projectName": "TP.ConcurrentProgramming.PresentationView",
-        "projectPath": "c:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\GraphicalUserInterface\\PresentationView.csproj",
+        "projectPath": "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\GraphicalUserInterface\\PresentationView.csproj",
         "packagesPath": "C:\\Users\\qemil\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\GraphicalUserInterface\\obj\\",
+        "outputPath": "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\GraphicalUserInterface\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\qemil\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -188,8 +188,8 @@
           "net9.0-windows7.0": {
             "targetAlias": "net9.0-windows7.0",
             "projectReferences": {
-              "c:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\PresentationViewModel\\PresentationViewModel.csproj": {
-                "projectPath": "c:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\PresentationViewModel\\PresentationViewModel.csproj"
+              "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\PresentationViewModel\\PresentationViewModel.csproj": {
+                "projectPath": "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\PresentationViewModel\\PresentationViewModel.csproj"
               }
             }
           }
@@ -238,14 +238,14 @@
         }
       }
     },
-    "c:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\PresentationModel\\PresentationModel.csproj": {
+    "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\PresentationModel\\PresentationModel.csproj": {
       "version": "4.3.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\PresentationModel\\PresentationModel.csproj",
+        "projectUniqueName": "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\PresentationModel\\PresentationModel.csproj",
         "projectName": "TP.ConcurrentProgramming.PresentationModel",
-        "projectPath": "c:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\PresentationModel\\PresentationModel.csproj",
+        "projectPath": "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\PresentationModel\\PresentationModel.csproj",
         "packagesPath": "C:\\Users\\qemil\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\PresentationModel\\obj\\",
+        "outputPath": "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\PresentationModel\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\qemil\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -260,8 +260,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "c:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\BusinessLogic\\BusinessLogic.csproj": {
-                "projectPath": "c:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\BusinessLogic\\BusinessLogic.csproj"
+              "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\BusinessLogic\\BusinessLogic.csproj": {
+                "projectPath": "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\BusinessLogic\\BusinessLogic.csproj"
               }
             }
           }
@@ -325,14 +325,14 @@
         }
       }
     },
-    "c:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\PresentationViewModel\\PresentationViewModel.csproj": {
+    "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\PresentationViewModel\\PresentationViewModel.csproj": {
       "version": "4.2.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\PresentationViewModel\\PresentationViewModel.csproj",
+        "projectUniqueName": "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\PresentationViewModel\\PresentationViewModel.csproj",
         "projectName": "TP.ConcurrentProgramming.PresentationViewModel",
-        "projectPath": "c:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\PresentationViewModel\\PresentationViewModel.csproj",
+        "projectPath": "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\PresentationViewModel\\PresentationViewModel.csproj",
         "packagesPath": "C:\\Users\\qemil\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\PresentationViewModel\\obj\\",
+        "outputPath": "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\PresentationViewModel\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\qemil\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -347,8 +347,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "c:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\PresentationModel\\PresentationModel.csproj": {
-                "projectPath": "c:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\PresentationModel\\PresentationModel.csproj"
+              "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\PresentationModel\\PresentationModel.csproj": {
+                "projectPath": "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\PresentationModel\\PresentationModel.csproj"
               }
             }
           }

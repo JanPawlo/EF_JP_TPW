@@ -181,11 +181,11 @@
   "project": {
     "version": "4.2.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\GraphicalUserInterface\\PresentationView.csproj",
+      "projectUniqueName": "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\GraphicalUserInterface\\PresentationView.csproj",
       "projectName": "TP.ConcurrentProgramming.PresentationView",
-      "projectPath": "c:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\GraphicalUserInterface\\PresentationView.csproj",
+      "projectPath": "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\GraphicalUserInterface\\PresentationView.csproj",
       "packagesPath": "C:\\Users\\qemil\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\GraphicalUserInterface\\obj\\",
+      "outputPath": "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\GraphicalUserInterface\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\qemil\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -200,8 +200,8 @@
         "net9.0-windows7.0": {
           "targetAlias": "net9.0-windows7.0",
           "projectReferences": {
-            "c:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\PresentationViewModel\\PresentationViewModel.csproj": {
-              "projectPath": "c:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\PresentationViewModel\\PresentationViewModel.csproj"
+            "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\PresentationViewModel\\PresentationViewModel.csproj": {
+              "projectPath": "C:\\Users\\qemil\\Documents\\studia\\semestr4\\wspolbiezne\\repo\\EF_JP_TPW\\Project\\PresentationViewModel\\PresentationViewModel.csproj"
             }
           }
         }
