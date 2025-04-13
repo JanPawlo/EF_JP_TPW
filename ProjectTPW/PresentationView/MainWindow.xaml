@@ -6,7 +6,13 @@
         xmlns:local="clr-namespace:PresentationView"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Border BorderThickness="4" BorderBrush="Green" Height="300" Width="400">
+		<Grid>
+			<TextBlock Name="testHello" Text="Initial Text" FontSize="50"/>
+			<Button Name="btn0" Content="change Hello" Width="100" Height="30"
+				VerticalAlignment="Center" HorizontalAlignment="Center"
+		        Click="btn0_Click"/>
+		</Grid>
+    </Border>
+	</Window>
 
-    </Grid>
-</Window>
