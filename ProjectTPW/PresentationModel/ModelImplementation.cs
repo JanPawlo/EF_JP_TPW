@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Logic;
 using static System.Net.Mime.MediaTypeNames;
+using Data;
 
 
 namespace PresentationModel
@@ -49,13 +50,13 @@ namespace PresentationModel
                     {
                         Balls.Clear();
                         foreach (var b in logicBalls)
-                            Balls.Add(new BallViewModel());
+                            Balls.Add(new PresentationViewModel.BallViewModel());
                     }
 
                     for (int i = 0; i < logicBalls.Count; i++)
                     {
-                        Balls[i].X = logicBalls[i].X;
-                        Balls[i].Y = logicBalls[i].Y;
+                        Balls[i].x = logicBalls[i].X;
+                        Balls[i].y = logicBalls[i].Y;
                     }
                 });
 
