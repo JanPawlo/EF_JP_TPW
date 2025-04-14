@@ -47,7 +47,7 @@
 		<!-- Scalable Buttons Column -->
 		<Viewbox Grid.Column="1" Stretch="Uniform" Margin="10" VerticalAlignment="Center" MaxWidth="100">
 			<StackPanel Orientation="Vertical">
-                <TextBlock Text="Liczba kul ( ͡° ͜ʖ ͡°): "/>
+                <TextBlock Text="Liczba kul: "/>
                 <xctk:IntegerUpDown
                     Name="upDownSelectBallNr"
 					Minimum="1"

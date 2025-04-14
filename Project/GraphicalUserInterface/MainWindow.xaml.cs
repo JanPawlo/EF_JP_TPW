@@ -28,7 +28,7 @@ namespace TP.ConcurrentProgramming.PresentationView
     }
 
     private bool _startClicked = false;
-
+    private bool _restartClicked = true;
   public void StartAction(object sender, RoutedEventArgs e)
   {
             if (_startClicked)
@@ -40,11 +40,14 @@ namespace TP.ConcurrentProgramming.PresentationView
 
             viewModel.Start(numberOfBalls);
             _startClicked = true;
+            _restartClicked = false;
     
   }
 
         public void RestartAction(object sender, RoutedEventArgs e)
         {
+            if (_restartClicked)
+                return;
             MainWindowViewModel viewModel = (MainWindowViewModel)DataContext;
             viewModel.Stop();
             // Reset the start clicked flag
