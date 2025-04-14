@@ -52,7 +52,7 @@ namespace TP.ConcurrentProgramming.Presentation.Model
       }
     }
 
-    public double Diameter { get; init; } = 0;
+    public double Diameter { get; init; } = 20;
 
     #region INotifyPropertyChanged
 
@@ -69,7 +69,8 @@ namespace TP.ConcurrentProgramming.Presentation.Model
 
     private void NewPositionNotification(object sender, IPosition e)
     {
-      Top = e.y; Left = e.x;
+      Left = e.x - Diameter / 2;
+      Top = e.y - Diameter / 2;
     }
 
     private void RaisePropertyChanged([CallerMemberName] string propertyName = "")
