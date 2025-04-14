@@ -8,7 +8,7 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\PresentationViewModel\PresentationViewModel.csproj" />
+		<ProjectReference Include="..\PresentationModel\PresentationModel.csproj" />
 	</ItemGroup>
 
 </Project>

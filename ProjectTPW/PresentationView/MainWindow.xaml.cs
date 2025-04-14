@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using System;
-using PresentationViewModel;
+using PresentationModel;
 
 //kontrola UI zaprojektowanego w MainWindow.xaml
 
@@ -13,7 +13,7 @@ namespace PresentationView
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = new MainViewModel();
+            this.DataContext = new ModelImplementation();
         }
 
 

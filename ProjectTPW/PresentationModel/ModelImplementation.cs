@@ -43,7 +43,7 @@ namespace PresentationModel
             {
                 var logicBalls = LogicLayer.GetBalls();
 
-                Application.Current.Dispatcher.Invoke(() =>
+                System.Windows.Application.Current.Dispatcher.Invoke(() =>
                 {
                     if (Balls.Count != logicBalls.Count)
                     {
