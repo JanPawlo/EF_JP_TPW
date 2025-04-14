@@ -48,6 +48,7 @@
 		<Viewbox Grid.Column="1" Stretch="Uniform" Margin="10" VerticalAlignment="Center" MaxWidth="50">
 			<StackPanel Orientation="Vertical">
 				<xctk:IntegerUpDown
+                    Name="upDownSelectBallNr"
 					Minimum="1"
 					Maximum="20"
 					DefaultValue="5"

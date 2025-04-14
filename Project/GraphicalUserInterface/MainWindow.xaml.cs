@@ -33,9 +33,9 @@ namespace TP.ConcurrentProgramming.PresentationView
   {
             if (_startClicked)
                 return;
-            Random random = new Random();
             MainWindowViewModel viewModel = (MainWindowViewModel)DataContext;
-            viewModel.Start(random.Next(5, 10));
+
+            viewModel.Start((int)upDownSelectBallNr.Value);
             _startClicked = true;
     
   }
