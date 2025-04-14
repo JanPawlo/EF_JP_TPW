@@ -1,6 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Collections.ObjectModel;
+using System.Windows;
+using Logic;
+
 // Dziala miedzy UI a logiką, posiada listenery(?)
 //idk czym sie roznia presentationModel i presentationViewModel
 

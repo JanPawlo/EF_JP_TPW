@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using System;
-
+using PresentationViewModel;
 
 //kontrola UI zaprojektowanego w MainWindow.xaml
 
