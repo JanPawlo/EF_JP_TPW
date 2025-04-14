@@ -76,7 +76,7 @@ namespace TP.ConcurrentProgramming.Data
         {
             newY = MinY + Radius;
         }
-        else if (newY - Radius >= MaxY)
+        else if (newY + Radius >= MaxY)
         {
             newY = MaxY - Radius;
         }
