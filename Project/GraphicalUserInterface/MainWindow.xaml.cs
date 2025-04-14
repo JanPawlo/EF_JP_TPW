@@ -35,7 +35,10 @@ namespace TP.ConcurrentProgramming.PresentationView
                 return;
             MainWindowViewModel viewModel = (MainWindowViewModel)DataContext;
 
-            viewModel.Start((int)upDownSelectBallNr.Value);
+            int numberOfBalls = (int?)(upDownSelectBallNr.Value) ?? (int)(upDownSelectBallNr.DefaultValue);
+
+
+            viewModel.Start(numberOfBalls);
             _startClicked = true;
     
   }
