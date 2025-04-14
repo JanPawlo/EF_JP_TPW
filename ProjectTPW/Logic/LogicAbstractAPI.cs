@@ -1,6 +1,6 @@
 ﻿namespace Logic
 {
-    internal abstract class LogicAbstractAPI
+    public abstract class LogicAbstractAPI
     {
         public static LogicAbstractAPI GetLogicLayer()
         {
@@ -8,7 +8,7 @@
         }
 
         // Operacje interkatywne
-        public abstract void createBalls(int numOfBalls);
+        public abstract void start(int numOfBalls);
 
         // Operacje reaktywne
 
