@@ -40,13 +40,26 @@ namespace TP.ConcurrentProgramming.Data
         upperLayerHandler(startingPosition, newBall);
         BallsList.Add(newBall);
       }
+      MoveTimer.Change(TimeSpan.Zero, TimeSpan.FromMilliseconds(100));
     }
 
-    #endregion DataAbstractAPI
+    public override void Stop()
+    {
+        if (Disposed)
+            throw new ObjectDisposedException(nameof(DataImplementation));
 
-    #region IDisposable
+        // Stop the movement timer
+        MoveTimer.Change(Timeout.Infinite, Timeout.Infinite);
 
-    protected virtual void Dispose(bool disposing)
+        // Clear all balls from the simulation
+        BallsList.Clear();
+    }
+
+        #endregion DataAbstractAPI
+
+        #region IDisposable
+
+        protected virtual void Dispose(bool disposing)
     {
       if (!Disposed)
       {

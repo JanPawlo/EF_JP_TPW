@@ -58,7 +58,8 @@
 					Width="60"
 					Margin="0,5"/>
 				<Button x:Name="StartButton" Content="Start" Width="100" Height="30" Margin="0.5" Click="StartAction"/>
-				<!-- ... -->
+                <Button x:Name="RestartButton" Content="Restart" Width="100" Height="30" Margin="0.5" Click="RestartAction"/>
+                <!-- ... -->
 			</StackPanel>
 		</Viewbox>
 	</Grid>

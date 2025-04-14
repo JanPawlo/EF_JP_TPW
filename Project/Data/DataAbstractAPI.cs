@@ -24,6 +24,7 @@ namespace TP.ConcurrentProgramming.Data
     #region public API
 
     public abstract void Start(int numberOfBalls, Action<IVector, IBall> upperLayerHandler);
+    public abstract void Stop();
 
     #endregion public API
 
@@ -31,11 +32,12 @@ namespace TP.ConcurrentProgramming.Data
 
     public abstract void Dispose();
 
-    #endregion IDisposable
 
-    #region private
+        #endregion IDisposable
 
-    private static Lazy<DataAbstractAPI> modelInstance = new Lazy<DataAbstractAPI>(() => new DataImplementation());
+        #region private
+
+        private static Lazy<DataAbstractAPI> modelInstance = new Lazy<DataAbstractAPI>(() => new DataImplementation());
 
     #endregion private
   }

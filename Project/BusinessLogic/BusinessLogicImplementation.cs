@@ -46,11 +46,20 @@ namespace TP.ConcurrentProgramming.BusinessLogic
       layerBellow.Start(numberOfBalls, (startingPosition, databall) => upperLayerHandler(new Position(startingPosition.x, startingPosition.x), new Ball(databall)));
     }
 
-    #endregion BusinessLogicAbstractAPI
+    public override void Stop()
+    {
+        if (Disposed)
+            throw new ObjectDisposedException(nameof(BusinessLogicImplementation));
 
-    #region private
+        // Stop the data layer (assuming UnderneathLayerAPI has a Stop method)
+        layerBellow.Stop();
+    }
 
-    private bool Disposed = false;
+        #endregion BusinessLogicAbstractAPI
+
+        #region private
+
+        private bool Disposed = false;
 
     private readonly UnderneathLayerAPI layerBellow;
 
@@ -64,6 +73,6 @@ namespace TP.ConcurrentProgramming.BusinessLogic
       returnInstanceDisposed(Disposed);
     }
 
-    #endregion TestingInfrastructure
-  }
+        #endregion TestingInfrastructure
+    }
 }

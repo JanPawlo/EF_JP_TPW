@@ -49,11 +49,24 @@ namespace TP.ConcurrentProgramming.Presentation.Model
       layerBellow.Start(numberOfBalls, StartHandler);
     }
 
-    #endregion ModelAbstractApi
+    public override void Stop()
+    {
+        if (Disposed)
+            throw new ObjectDisposedException(nameof(ModelImplementation));
 
-    #region API
+        // Stop the business logic layer (assuming UnderneathLayerAPI has a Stop method)
+        layerBellow.Stop();
 
-    public event EventHandler<BallChaneEventArgs> BallChanged;
+        // Clear any existing ball change subscriptions
+        BallChanged = null;
+    }
+
+
+        #endregion ModelAbstractApi
+
+        #region API
+
+        public event EventHandler<BallChaneEventArgs> BallChanged;
 
     #endregion API
 
@@ -91,8 +104,8 @@ namespace TP.ConcurrentProgramming.Presentation.Model
       returnBallChangedIsNull(BallChanged == null);
     }
 
-    #endregion TestingInfrastructure
-  }
+        #endregion TestingInfrastructure
+    }
 
   public class BallChaneEventArgs : EventArgs
   {

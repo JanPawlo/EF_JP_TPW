@@ -43,7 +43,15 @@ namespace TP.ConcurrentProgramming.PresentationView
     
   }
 
-        
+        public void RestartAction(object sender, RoutedEventArgs e)
+        {
+            MainWindowViewModel viewModel = (MainWindowViewModel)DataContext;
+            viewModel.Stop();
+            // Reset the start clicked flag
+            _startClicked = false;
+        }
+
+
 
 
 

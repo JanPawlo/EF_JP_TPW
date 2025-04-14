@@ -27,17 +27,20 @@ namespace TP.ConcurrentProgramming.BusinessLogic
 
     public abstract void Start(int numberOfBalls, Action<IPosition, IBall> upperLayerHandler);
 
+    public abstract void Stop();
+
     #region IDisposable
 
     public abstract void Dispose();
 
-    #endregion IDisposable
 
-    #endregion Layer API
+        #endregion IDisposable
 
-    #region private
+        #endregion Layer API
 
-    private static Lazy<BusinessLogicAbstractAPI> modelInstance = new Lazy<BusinessLogicAbstractAPI>(() => new BusinessLogicImplementation());
+        #region private
+
+        private static Lazy<BusinessLogicAbstractAPI> modelInstance = new Lazy<BusinessLogicAbstractAPI>(() => new BusinessLogicImplementation());
 
     #endregion private
   }

@@ -68,6 +68,21 @@ namespace TP.ConcurrentProgramming.Presentation.ViewModel
             GC.SuppressFinalize(this);
         }
 
+        public void Stop()
+        {
+            if (Disposed)
+                throw new ObjectDisposedException(nameof(MainWindowViewModel));
+
+            // Clear all balls from the collection
+            Balls.Clear();
+
+            // Stop the model layer (assuming ModelAbstractApi has a Stop method)
+            ModelLayer.Stop();
+
+            // Re-subscribe the observer for future Start calls
+            Observer = ModelLayer.Subscribe<ModelIBall>(x => Balls.Add(x));
+        }
+
         #endregion IDisposable
 
         #region private
