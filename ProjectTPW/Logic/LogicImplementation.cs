@@ -8,12 +8,16 @@ namespace Logic
 {
     internal class LogicImplementation : LogicAbstractAPI
     {
-        private readonly List<Ball> balls = new();
+        private readonly Data.DataAbstractAPI LayerBelow = null;
         private Timer timer;
         // pamietac o spojnosci z MainWindow.xaml
         private readonly int width = 300, height = 400;
         private readonly object locker = new();
 
+        public LogicImplementation()
+        {
+            LayerBelow = Data.DataAbstractAPI.Create();
+        }
 
         public override void start(int numOfBalls)
         {
@@ -22,36 +26,25 @@ namespace Logic
             timer = new Timer(Update, null, 0, 16);
         }
 
-        public override void createBalls(int numOfBalls)
-        {
-            var rand = new Random();
-            for (int i = 0; i < numOfBalls; i++)
-            {
-                balls.Add(new Ball
-                {
-                    X = rand.NextDouble() * width,
-                    Y = rand.NextDouble() * height,
-                    VelocityX = rand.NextDouble() * 4 - 2,
-                    VelocityY   = rand.NextDouble() * 4 - 2
-                });
-            }
-        }
-
-        public override List<Ball> GetBalls() => balls;
-
-
+        // Do poprawienia (losowanie, ograniczenie wzgledem planszy)
         private void Update(object state)
         {
             lock (locker)
             {
-                foreach (var ball in balls)
+                Random rand = new Random();
+                foreach (var ball in LayerBelow.GetBalls())
                 {
-                    ball.X += ball.VelocityX;
-                    ball.Y += ball.VelocityY;
-
-                    if (ball.X <= 0 || ball.X >= width) ball.VelocityX *= -1;
-                    if (ball.Y <= 0 || ball.Y >= height) ball.VelocityY *= -1;
+                    ball.x = rand.NextDouble() * width;
+                    ball.y = rand.NextDouble() * height;
                 }
+            }
+        }
+
+        public override IReadOnlyList<Data.Ball> GetBalls()
+        {
+            lock (locker)
+            {
+                return LayerBelow.GetBalls();
             }
         }
 

@@ -6,8 +6,6 @@
     <Nullable>enable</Nullable>
 	 <UseWPF>true</UseWPF>
   </PropertyGroup>
-    <ItemGroup>
-    	<ProjectReference Include="..\PresentationModel\PresentationModel.csproj" />
-	</ItemGroup>
+
 
 </Project>

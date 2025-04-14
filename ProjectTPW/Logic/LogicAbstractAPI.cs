@@ -2,20 +2,17 @@
 {
     public abstract class LogicAbstractAPI
     {
-        public static LogicAbstractAPI GetLogicLayer()
+        public static LogicAbstractAPI Create()
         {
             return new LogicImplementation();
         }
 
         // Operacje interkatywne
         public abstract void start(int numOfBalls);
-        //to jest chyba interkatywne?
-        public abstract List<Ball> GetBalls();
         
         // Operacje reaktywne
-        
-        // to jest chyba reaktywne?
-        public abstract void createBalls(int numOfBalls);
+        public abstract IReadOnlyList<Data.Ball> GetBalls(); // Mozliwe ze bedzie trzeba stworzyc LogicBalls, aby wyzsze wartswy nie miały dostępu do danych
+
 
 
     }

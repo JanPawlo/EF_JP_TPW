@@ -10,11 +10,12 @@ namespace Data
     public abstract class DataAbstractAPI
     {
         // Fabryka
-        public static DataAbstractAPI GetDataLayer()
+        public static DataAbstractAPI Create()
         {
             return new DataImplementation();
         }
         public abstract void Start(int numOfBalls);
+        public abstract List<Ball> GetBalls();
 
 
     }
