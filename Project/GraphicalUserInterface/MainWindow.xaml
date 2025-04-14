@@ -17,11 +17,11 @@
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="*"/>
-			<ColumnDefinition Width="*" MaxWidth="100"/>
+			<ColumnDefinition Width="*" MaxWidth="200"/>
 		</Grid.ColumnDefinitions>
 
 		<!-- Scalable Border with Balls -->
-		<Viewbox Grid.Column="0" Stretch="Uniform">
+		<Viewbox Grid.Column="0" Stretch="Uniform" Margin="0,0,75,0">
 			<Border BorderThickness="4" BorderBrush="Green" Height="420" Width="400" Margin="10">
 				<ItemsControl ItemsSource="{Binding Balls}">
 					<ItemsControl.ItemsPanel>
@@ -45,17 +45,19 @@
 		</Viewbox>
 
 		<!-- Scalable Buttons Column -->
-		<Viewbox Grid.Column="1" Stretch="Uniform" Margin="10" VerticalAlignment="Center" MaxWidth="50">
+		<Viewbox Grid.Column="1" Stretch="Uniform" Margin="10" VerticalAlignment="Center" MaxWidth="100">
 			<StackPanel Orientation="Vertical">
-				<xctk:IntegerUpDown
+                <TextBlock Text="Liczba kul ( ͡° ͜ʖ ͡°): "/>
+                <xctk:IntegerUpDown
                     Name="upDownSelectBallNr"
 					Minimum="1"
 					Maximum="20"
 					DefaultValue="5"
+					DisplayDefaultValueOnEmptyText="True"
 					Value="{Binding BallCount}"
 					Width="60"
 					Margin="0,5"/>
-				<Button x:Name="StartButton" Content="Start" Width="50" Height="30" Margin="0,5" Click="StartAction"/>
+				<Button x:Name="StartButton" Content="Start" Width="100" Height="30" Margin="0.5" Click="StartAction"/>
 				<!-- ... -->
 			</StackPanel>
 		</Viewbox>
