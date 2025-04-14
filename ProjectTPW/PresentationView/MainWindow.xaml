@@ -8,6 +8,21 @@
         Title="MainWindow" Height="450" Width="800">
     <Border BorderThickness="4" BorderBrush="Green" Height="300" Width="400">
 		<Grid>
+			<Canvas Name="MainCanvas" Background="LightGray">
+				<ItemsControl ItemsSource="{Binding Balls}">
+					<ItemsControl.ItemsPanel>
+						<ItemsPanelTemplate>
+							<Canvas />
+						</ItemsPanelTemplate>
+					</ItemsControl.ItemsPanel>
+					<ItemsControl.ItemTemplate>
+						<DataTemplate>
+							<Ellipse Width="20" Height="20" Fill="Red"
+									 Canvas.Left="{Binding X}" Canvas.Top="{Binding Y}" />
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+			</Canvas>
 			<TextBlock Name="testHello" Text="Initial Text" FontSize="50"/>
 			<Button Name="btn0" Content="change Hello" Width="100" Height="30"
 				VerticalAlignment="Center" HorizontalAlignment="Center"
