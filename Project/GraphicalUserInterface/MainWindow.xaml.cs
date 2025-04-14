@@ -25,14 +25,30 @@ namespace TP.ConcurrentProgramming.PresentationView
       MainWindowViewModel viewModel = (MainWindowViewModel)DataContext;
       double screenWidth = SystemParameters.PrimaryScreenWidth;
       double screenHeight = SystemParameters.PrimaryScreenHeight;
-      viewModel.Start(random.Next(5, 10));
     }
 
-    /// <summary>
-    /// Raises the <seealso cref="System.Windows.Window.Closed"/> event.
-    /// </summary>
-    /// <param name="e">An <see cref="EventArgs"/> that contains the event data.</param>
-    protected override void OnClosed(EventArgs e)
+    private bool _startClicked = false;
+
+  public void StartAction(object sender, RoutedEventArgs e)
+  {
+            if (_startClicked)
+                return;
+            Random random = new Random();
+            MainWindowViewModel viewModel = (MainWindowViewModel)DataContext;
+            viewModel.Start(random.Next(5, 10));
+            _startClicked = true;
+    
+  }
+
+        
+
+
+
+        /// <summary>
+        /// Raises the <seealso cref="System.Windows.Window.Closed"/> event.
+        /// </summary>
+        /// <param name="e">An <see cref="EventArgs"/> that contains the event data.</param>
+        protected override void OnClosed(EventArgs e)
     {
       if (DataContext is MainWindowViewModel viewModel)
         viewModel.Dispose();

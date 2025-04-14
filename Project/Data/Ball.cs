@@ -38,7 +38,7 @@ namespace TP.ConcurrentProgramming.Data
         private Vector Position;
         private readonly Stopwatch _stopwatch;
         private long _lastUpdateTime = 0;
-        private const double MinUpdateIntervalMs = 200; // 16ms = ~60fps
+        private const double MinUpdateIntervalMs = 16; // 16ms = ~60fps
 
         private const double Radius = 10;
         private const double MaxX = 400 - Radius;

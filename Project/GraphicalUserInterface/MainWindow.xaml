@@ -3,6 +3,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:vm="clr-namespace:TP.ConcurrentProgramming.Presentation.ViewModel;assembly=TP.ConcurrentProgramming.PresentationViewModel"
         mc:Ignorable="d"
         Title="Presentation layer targeting reactive behaviour"
@@ -46,12 +47,15 @@
 		<!-- Scalable Buttons Column -->
 		<Viewbox Grid.Column="1" Stretch="Uniform" Margin="10" VerticalAlignment="Center" MaxWidth="50">
 			<StackPanel Orientation="Vertical">
-				<Button x:Name="StartButton" Content="Start" Width="50" Height="30" Margin="0,5"
-                        Command="{Binding StartCommand}"/>
-				<Button x:Name="StopButton" Content="Stop" Width="50" Height="30" Margin="0,5"
-                        Command="{Binding StopCommand}"/>
-				<Button x:Name="ResetButton" Content="Reset" Width="50" Height="30" Margin="0,5"
-                        Command="{Binding ResetCommand}"/>
+				<xctk:IntegerUpDown
+					Minimum="1"
+					Maximum="20"
+					DefaultValue="5"
+					Value="{Binding BallCount}"
+					Width="60"
+					Margin="0,5"/>
+				<Button x:Name="StartButton" Content="Start" Width="50" Height="30" Margin="0,5" Click="StartAction"/>
+				<!-- ... -->
 			</StackPanel>
 		</Viewbox>
 	</Grid>
