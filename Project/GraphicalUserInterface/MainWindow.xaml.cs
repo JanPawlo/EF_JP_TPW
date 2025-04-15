@@ -52,6 +52,7 @@ namespace TP.ConcurrentProgramming.PresentationView
             viewModel.Stop();
             // Reset the start clicked flag
             _startClicked = false;
+            _restartClicked = true;
         }
 
 

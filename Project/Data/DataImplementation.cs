@@ -40,7 +40,7 @@ namespace TP.ConcurrentProgramming.Data
         upperLayerHandler(startingPosition, newBall);
         BallsList.Add(newBall);
       }
-      MoveTimer.Change(TimeSpan.Zero, TimeSpan.FromMilliseconds(100));
+      MoveTimer.Change(TimeSpan.Zero, TimeSpan.FromMilliseconds(40));
     }
 
     public override void Stop()

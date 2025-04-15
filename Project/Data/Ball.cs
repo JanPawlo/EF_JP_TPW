@@ -71,24 +71,20 @@ namespace TP.ConcurrentProgramming.Data
             if (newX - Radius <= MinX)
             {
                 newX = MinX + Radius;
-                Velocity = new Vector(-Velocity.x, Velocity.y); // bounce
             }
             else if (newX + Radius >= MaxX)
             {
                 newX = MaxX - Radius;
-                Velocity = new Vector(-Velocity.x, Velocity.y); // bounce
             }
 
             // oś Y
             if (newY - Radius <= MinY)
             {
                 newY = MinY + Radius;
-                Velocity = new Vector(Velocity.x, -Velocity.y); // bounce
             }
             else if (newY + Radius >= MaxY)
             {
                 newY = MaxY - Radius;
-                Velocity = new Vector(Velocity.x, -Velocity.y); // bounce
             }
 
             Position = new Vector(newX, newY);
