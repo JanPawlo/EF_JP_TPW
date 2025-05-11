@@ -10,26 +10,54 @@
 
 namespace TP.ConcurrentProgramming.BusinessLogic
 {
-  internal class Ball : IBall
-  {
-    public Ball(Data.IBall ball)
+    internal class Ball : IBall
     {
-      ball.NewPositionNotification += RaisePositionChangeEvent;
+
+        private readonly Data.IBall _dataBall;
+
+        public Ball(Data.IBall ball)
+        {
+            _dataBall = ball;
+            ball.NewPositionNotification += RaisePositionChangeEvent;
+        }
+
+        #region IBall
+
+        public event EventHandler<IPosition>? NewPositionNotification;
+
+        #endregion IBall
+
+        #region private
+
+        private void RaisePositionChangeEvent(object? sender, Data.IVector e)
+        {
+            CheckCollisionWithWalls(e);
+            NewPositionNotification?.Invoke(this, new Position(e.x, e.y));
+        }
+
+        private void CheckCollisionWithWalls(Data.IVector e)
+        {
+            double minX = 0, maxX = 400, minY = 0, maxY = 420;
+            double radius = 10; // Przyjmujemy, że piłka ma promień 10 jednostek
+
+            // Sprawdzamy kolizję z lewą i prawą ścianą (oś X)
+            if (e.x <= minX + radius || e.x >= maxX - radius)
+            {
+                // Zmiana kierunku prędkości w osi X (odbicie)
+                _dataBall.Velocity.x = -_dataBall.Velocity.x;
+                _dataBall.Velocity.y = _dataBall.Velocity.y; 
+            }
+
+            // Sprawdzamy kolizję z górną i dolną ścianą (oś Y)
+            if (e.y <= minY + radius || e.y >= maxY - radius)
+            {
+                // Zmiana kierunku prędkości w osi Y (odbicie)
+                _dataBall.Velocity.x = _dataBall.Velocity.x;
+                _dataBall.Velocity.y = -_dataBall.Velocity.y;
+            }
+        }
+
+        #endregion private
     }
-
-    #region IBall
-
-    public event EventHandler<IPosition>? NewPositionNotification;
-
-    #endregion IBall
-
-    #region private
-
-    private void RaisePositionChangeEvent(object? sender, Data.IVector e)
-    {
-      NewPositionNotification?.Invoke(this, new Position(e.x, e.y));
-    }
-
-    #endregion private
-  }
 }
+

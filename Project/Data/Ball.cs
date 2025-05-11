@@ -37,6 +37,7 @@ namespace TP.ConcurrentProgramming.Data
         public event EventHandler<IVector>? NewPositionNotification;
 
         public IVector Velocity { get; set; }
+        public IVector Position { get; set; }
         public double Mass { get; init; } = 1.0; 
         public double Radius { get; init; } = 10.0;
 
@@ -45,7 +46,6 @@ namespace TP.ConcurrentProgramming.Data
 
         #region private
 
-        private Vector Position;
         private readonly Stopwatch _stopwatch;
 
         private double MaxX;
@@ -58,37 +58,13 @@ namespace TP.ConcurrentProgramming.Data
             NewPositionNotification?.Invoke(this, Position);
         }
 
-        internal void Move(Vector delta)
+        internal void Move()
         {
             double dx = Velocity.x;
             double dy = Velocity.y;
 
             double newX = Position.x + dx;
             double newY = Position.y + dy;
-
-            // os X
-            if (newX - Radius < MinX)
-            {
-                newX = MinX + Radius;
-                dx = -dx;
-            }
-            else if (newX + Radius >= MaxX)
-            {
-                newX = MaxX - Radius;
-                dx = -dx;
-            }
-
-            // os Y
-            if (newY - Radius < MinY)
-            {
-                newY = MinY + Radius;
-                dy = -dy;
-            }
-            else if (newY + Radius >= MaxY)
-            {
-                newY = MaxY - Radius;
-                dy = -dy;
-            }
 
             Velocity = new Vector(dx, dy);
             Position = new Vector(newX, newY);

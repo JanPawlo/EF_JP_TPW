@@ -38,8 +38,7 @@ namespace TP.ConcurrentProgramming.Data
         Vector startingPosition = new Vector(random.Next(100, 400 - 100), random.Next(100, 400 - 100));
         Vector initialVelocity = new Vector((random.NextDouble() - 2) * 4.0, (random.NextDouble() - 2) * 4.0);
 
-
-                Ball newBall = new(startingPosition, initialVelocity);
+        Ball newBall = new(startingPosition, initialVelocity);
         upperLayerHandler(startingPosition, newBall);
         BallsList.Add(newBall);
       }
@@ -57,6 +56,7 @@ namespace TP.ConcurrentProgramming.Data
         // Clear all balls from the simulation
         BallsList.Clear();
     }
+
 
         #endregion DataAbstractAPI
 
@@ -98,7 +98,7 @@ namespace TP.ConcurrentProgramming.Data
     private void Move(object? x)
     {
       foreach (Ball item in BallsList)
-        item.Move(new Vector((RandomGenerator.NextDouble() - 0.5) * 10, (RandomGenerator.NextDouble() - 0.5) * 10));
+        item.Move();
     }
 
     #endregion private

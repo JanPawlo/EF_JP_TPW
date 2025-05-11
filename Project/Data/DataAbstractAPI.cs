@@ -19,18 +19,21 @@ namespace TP.ConcurrentProgramming.Data
       return modelInstance.Value;
     }
 
-    #endregion Layer Factory
 
-    #region public API
+        #endregion Layer Factory
 
-    public abstract void Start(int numberOfBalls, Action<IVector, IBall> upperLayerHandler);
+        #region public API
+
+        public abstract void Start(int numberOfBalls, Action<IVector, IBall> upperLayerHandler);
     public abstract void Stop();
+
+
 
     #endregion public API
 
     #region IDisposable
 
-    public abstract void Dispose();
+        public abstract void Dispose();
 
 
         #endregion IDisposable
@@ -47,12 +50,12 @@ namespace TP.ConcurrentProgramming.Data
     /// <summary>
     /// The X component of the vector.
     /// </summary>
-    double x { get; init; }
+    double x { get; set; }
 
     /// <summary>
     /// The y component of the vector.
     /// </summary>
-    double y { get; init; }
+    double y { get; set; }
   }
 
   public interface IBall
@@ -60,5 +63,6 @@ namespace TP.ConcurrentProgramming.Data
     event EventHandler<IVector> NewPositionNotification;
 
     IVector Velocity { get; set; }
-  }
+    IVector Position { get; set; }
+    }
 }
