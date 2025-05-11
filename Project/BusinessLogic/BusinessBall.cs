@@ -49,24 +49,35 @@ namespace TP.ConcurrentProgramming.BusinessLogic
             double minX = 0, maxX = 400, minY = 0, maxY = 420;
             double radius = 10;
 
-            // kolizja z lewą i prawą ścianą (oś X)
-            if (e.x <= minX + radius || e.x >= maxX - radius)
+            // Kolizja z lewą i prawą ścianą (oś X)
+            if (e.x <= minX + radius)
             {
-                // Odbicie
+                // Odbicie od lewej ściany
                 _dataBall.Velocity.x = -_dataBall.Velocity.x;
-                _dataBall.Velocity.y = _dataBall.Velocity.y;
-                _dataBall.Position.x = _dataBall.Position.x + _dataBall.Velocity.x;
+                _dataBall.Position.x = minX + radius + Math.Abs(_dataBall.Velocity.x); 
+            }
+            else if (e.x >= maxX - radius)
+            {
+                // Odbicie od prawej ściany
+                _dataBall.Velocity.x = -_dataBall.Velocity.x;
+                _dataBall.Position.x = maxX - radius - Math.Abs(_dataBall.Velocity.x);
             }
 
-            // kolizja z górną i dolną ścianą (oś Y)
-            if (e.y <= minY + radius || e.y >= maxY - radius)
+            // Kolizja z górną i dolną ścianą (oś Y)
+            if (e.y <= minY + radius)
             {
-                // Odbicie
-                _dataBall.Velocity.x = _dataBall.Velocity.x;
+                // Odbicie od górnej ściany
                 _dataBall.Velocity.y = -_dataBall.Velocity.y;
-                _dataBall.Position.y = _dataBall.Position.y + _dataBall.Velocity.y;
+                _dataBall.Position.y = minY + radius + Math.Abs(_dataBall.Velocity.y); 
+            }
+            else if (e.y >= maxY - radius)
+            {
+                // Odbicie od dolnej ściany
+                _dataBall.Velocity.y = -_dataBall.Velocity.y;
+                _dataBall.Position.y = maxY - radius - Math.Abs(_dataBall.Velocity.y); 
             }
         }
+
 
         private void CheckCollisionWithOtherBalls()
         {
@@ -85,10 +96,16 @@ namespace TP.ConcurrentProgramming.BusinessLogic
 
                 if (distSq <= minDist * minDist)
                 {
-                    // Zamiana wektorów prędkości — uproszczona symulacja
+                    // odbicie idealnie sprezyste (dla tej samej masy)
                     var temp = _dataBall.Velocity;
                     _dataBall.Velocity = other._dataBall.Velocity;
                     other._dataBall.Velocity = temp;
+                    // przesunięcie kul, aby nie nachodziły na siebie
+                    other._dataBall.Position.x += other._dataBall.Velocity.x;
+                    other._dataBall.Position.y += other._dataBall.Velocity.y;
+                    _dataBall.Position.x += _dataBall.Velocity.x;
+                    _dataBall.Position.y += _dataBall.Velocity.y;
+
                 }
             }
         }
