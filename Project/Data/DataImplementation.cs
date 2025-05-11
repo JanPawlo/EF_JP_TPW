@@ -15,9 +15,12 @@ namespace TP.ConcurrentProgramming.Data
 {
   internal class DataImplementation : DataAbstractAPI
   {
+
+    public Action<List<IBall>>? BallsListUpdated;
+
     #region ctor
 
-    public DataImplementation()
+        public DataImplementation()
     {
       MoveTimer = new Timer(Move, null, TimeSpan.Zero, TimeSpan.FromMilliseconds(100));
     }
@@ -43,6 +46,7 @@ namespace TP.ConcurrentProgramming.Data
         BallsList.Add(newBall);
       }
       MoveTimer.Change(TimeSpan.Zero, TimeSpan.FromMilliseconds(40));
+      BallsListUpdated?.Invoke(BallsList.Cast<IBall>().ToList());
     }
 
     public override void Stop()

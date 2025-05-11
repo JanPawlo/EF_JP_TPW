@@ -21,6 +21,12 @@ namespace TP.ConcurrentProgramming.BusinessLogic
             ball.NewPositionNotification += RaisePositionChangeEvent;
         }
 
+        public void SetOtherBalls(List<Ball> otherBalls)
+        {
+            _otherBalls = otherBalls;
+        }
+
+
         #region IBall
 
         public event EventHandler<IPosition>? NewPositionNotification;
@@ -29,33 +35,64 @@ namespace TP.ConcurrentProgramming.BusinessLogic
 
         #region private
 
+        private List<Ball> _otherBalls = new();
+
         private void RaisePositionChangeEvent(object? sender, Data.IVector e)
         {
             CheckCollisionWithWalls(e);
+            CheckCollisionWithOtherBalls();
             NewPositionNotification?.Invoke(this, new Position(e.x, e.y));
         }
 
         private void CheckCollisionWithWalls(Data.IVector e)
         {
             double minX = 0, maxX = 400, minY = 0, maxY = 420;
-            double radius = 10; // Przyjmujemy, że piłka ma promień 10 jednostek
+            double radius = 10;
 
-            // Sprawdzamy kolizję z lewą i prawą ścianą (oś X)
+            // kolizja z lewą i prawą ścianą (oś X)
             if (e.x <= minX + radius || e.x >= maxX - radius)
             {
-                // Zmiana kierunku prędkości w osi X (odbicie)
+                // Odbicie
                 _dataBall.Velocity.x = -_dataBall.Velocity.x;
-                _dataBall.Velocity.y = _dataBall.Velocity.y; 
+                _dataBall.Velocity.y = _dataBall.Velocity.y;
+                _dataBall.Position.x = _dataBall.Position.x + _dataBall.Velocity.x;
             }
 
-            // Sprawdzamy kolizję z górną i dolną ścianą (oś Y)
+            // kolizja z górną i dolną ścianą (oś Y)
             if (e.y <= minY + radius || e.y >= maxY - radius)
             {
-                // Zmiana kierunku prędkości w osi Y (odbicie)
+                // Odbicie
                 _dataBall.Velocity.x = _dataBall.Velocity.x;
                 _dataBall.Velocity.y = -_dataBall.Velocity.y;
+                _dataBall.Position.y = _dataBall.Position.y + _dataBall.Velocity.y;
             }
         }
+
+        private void CheckCollisionWithOtherBalls()
+        {
+            if (_otherBalls == null) return;
+
+            double radius = 10;
+
+            foreach (var other in _otherBalls)
+            {
+                if (other == this) continue;
+
+                var dx = _dataBall.Position.x - other._dataBall.Position.x;
+                var dy = _dataBall.Position.y - other._dataBall.Position.y;
+                var distSq = dx * dx + dy * dy;
+                var minDist = 2 * radius;
+
+                if (distSq <= minDist * minDist)
+                {
+                    // Zamiana wektorów prędkości — uproszczona symulacja
+                    var temp = _dataBall.Velocity;
+                    _dataBall.Velocity = other._dataBall.Velocity;
+                    other._dataBall.Velocity = temp;
+                }
+            }
+        }
+
 
         #endregion private
     }

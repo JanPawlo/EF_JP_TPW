@@ -25,13 +25,13 @@ namespace TP.ConcurrentProgramming.Data
         #region public API
 
         public abstract void Start(int numberOfBalls, Action<IVector, IBall> upperLayerHandler);
-    public abstract void Stop();
+        public abstract void Stop();
+        public virtual Action<IEnumerable<IBall>>? BallsListUpdated { get; set; }
 
 
+        #endregion public API
 
-    #endregion public API
-
-    #region IDisposable
+        #region IDisposable
 
         public abstract void Dispose();
 
