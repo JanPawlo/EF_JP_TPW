@@ -7,10 +7,17 @@ namespace TP.ConcurrentProgramming.Data
     {
         #region ctor
 
-        internal Ball(Vector initialPosition, Vector initialVelocity)
+        internal Ball(Vector initialPosition, Vector initialVelocity, double mass=10.0, double radius=1.0)
         {
             double x = initialPosition.x;
             double y = initialPosition.y;
+            Mass = mass;
+            Radius = radius;
+
+            MaxX = 400 - Radius;
+            MaxY = 420 - Radius;
+            MinX = 0 + Radius;
+            MinY = 0 + Radius;
 
             if (x < MinX) x = MinX;
             else if (x > MaxX) x = MaxX;
@@ -30,6 +37,9 @@ namespace TP.ConcurrentProgramming.Data
         public event EventHandler<IVector>? NewPositionNotification;
 
         public IVector Velocity { get; set; }
+        public double Mass { get; init; } = 1.0; 
+        public double Radius { get; init; } = 10.0;
+
 
         #endregion IBall
 
@@ -37,14 +47,11 @@ namespace TP.ConcurrentProgramming.Data
 
         private Vector Position;
         private readonly Stopwatch _stopwatch;
-        private long _lastUpdateTime = 0;
-        private const double MinUpdateIntervalMs = 16; // 16ms = ~60fps
 
-        private const double Radius = 10;
-        private const double MaxX = 400 - Radius;
-        private const double MaxY = 420 - Radius;
-        private const double MinX = 0 + Radius;
-        private const double MinY = 0 + Radius;
+        private double MaxX;
+        private double MaxY;
+        private double MinX;
+        private double MinY;
 
         private void RaiseNewPositionChangeNotification()
         {
@@ -53,43 +60,42 @@ namespace TP.ConcurrentProgramming.Data
 
         internal void Move(Vector delta)
         {
-            long currentTime = _stopwatch.ElapsedMilliseconds;
-            long timeSinceLastUpdate = currentTime - _lastUpdateTime;
+            double dx = Velocity.x;
+            double dy = Velocity.y;
 
-            // Only update if at least 16ms have passed since last update
-            if (timeSinceLastUpdate < MinUpdateIntervalMs)
-            {
-                return;
-            }
+            double newX = Position.x + dx;
+            double newY = Position.y + dy;
 
-            _lastUpdateTime = currentTime;
-
-            double newX = Position.x + delta.x;
-            double newY = Position.y + delta.y;
-
-            // oś X
-            if (newX - Radius <= MinX)
+            // os X
+            if (newX - Radius < MinX)
             {
                 newX = MinX + Radius;
+                dx = -dx;
             }
             else if (newX + Radius >= MaxX)
             {
                 newX = MaxX - Radius;
+                dx = -dx;
             }
 
-            // oś Y
-            if (newY - Radius <= MinY)
+            // os Y
+            if (newY - Radius < MinY)
             {
                 newY = MinY + Radius;
+                dy = -dy;
             }
             else if (newY + Radius >= MaxY)
             {
                 newY = MaxY - Radius;
+                dy = -dy;
             }
 
+            Velocity = new Vector(dx, dy);
             Position = new Vector(newX, newY);
             RaiseNewPositionChangeNotification();
         }
+
+
 
         #endregion private
     }
