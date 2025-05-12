@@ -28,6 +28,7 @@ namespace TP.ConcurrentProgramming.Data
             Position = new Vector(x, y);
             Velocity = initialVelocity;
             _stopwatch = Stopwatch.StartNew();
+            _previousTime = _stopwatch.ElapsedMilliseconds;
         }
 
         #endregion ctor
@@ -47,6 +48,7 @@ namespace TP.ConcurrentProgramming.Data
         #region private
 
         private readonly Stopwatch _stopwatch;
+        private long _previousTime;
 
         private double MaxX;
         private double MaxY;
@@ -60,13 +62,17 @@ namespace TP.ConcurrentProgramming.Data
 
         internal void Move()
         {
-            double dx = Velocity.x;
-            double dy = Velocity.y;
+            long currentTime = _stopwatch.ElapsedMilliseconds;
+            double deltaTime = (currentTime - _previousTime) / 1000.0; //seconds
+            deltaTime = deltaTime * 50;
+            _previousTime = currentTime;
+            double dx = Velocity.x * deltaTime;
+            double dy = Velocity.y * deltaTime;
 
             double newX = Position.x + dx;
             double newY = Position.y + dy;
 
-            Velocity = new Vector(dx, dy);
+            //Velocity = new Vector(dx, dy);
             Position = new Vector(newX, newY);
             RaiseNewPositionChangeNotification();
         }

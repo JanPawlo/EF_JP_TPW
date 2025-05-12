@@ -22,7 +22,7 @@ namespace TP.ConcurrentProgramming.Data
 
         public DataImplementation()
     {
-      MoveTimer = new Timer(Move, null, TimeSpan.Zero, TimeSpan.FromMilliseconds(100));
+      MoveTimer = new Timer(Move, null, TimeSpan.Zero, TimeSpan.FromMilliseconds(16));
     }
 
     #endregion ctor
@@ -56,10 +56,15 @@ namespace TP.ConcurrentProgramming.Data
 
         // Stop the movement timer
         MoveTimer.Change(Timeout.Infinite, Timeout.Infinite);
+            lock (_ballsLock)
+            {
+                // Clear all balls from the simulation
+                BallsList.Clear();
+            }
+            BallsListUpdated?.Invoke(new List<IBall>());
+        }
 
-        // Clear all balls from the simulation
-        BallsList.Clear();
-    }
+
 
 
         #endregion DataAbstractAPI
@@ -73,10 +78,14 @@ namespace TP.ConcurrentProgramming.Data
         if (disposing)
         {
           MoveTimer.Dispose();
-          BallsList.Clear();
-        }
-        Disposed = true;
-      }
+          lock (_ballsLock)
+             {
+                BallsList.Clear();
+                BallsListUpdated?.Invoke(new List<IBall>());
+             }
+             }
+                Disposed = true;
+            }
       else
         throw new ObjectDisposedException(nameof(DataImplementation));
     }
@@ -97,12 +106,20 @@ namespace TP.ConcurrentProgramming.Data
 
     private readonly Timer MoveTimer;
     private Random RandomGenerator = new();
-    private List<Ball> BallsList = [];
+    private readonly object _ballsLock = new object();
 
+    private List<Ball> BallsList = [];
+    
     private void Move(object? x)
     {
-      foreach (Ball item in BallsList)
-        item.Move();
+        lock (_ballsLock)
+        {
+            foreach (Ball item in BallsList)
+            { 
+                item.Move();
+            }
+        }
+
     }
 
     #endregion private

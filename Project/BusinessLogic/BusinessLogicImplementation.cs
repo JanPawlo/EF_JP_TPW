@@ -67,6 +67,7 @@ namespace TP.ConcurrentProgramming.BusinessLogic
             if (Disposed)
                 throw new ObjectDisposedException(nameof(BusinessLogicImplementation));
 
+            businessBalls.Clear();
             layerBellow.Stop();
         }
 
