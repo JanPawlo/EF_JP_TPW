@@ -20,9 +20,9 @@ namespace TP.ConcurrentProgramming.Data
 
     #region ctor
 
-        public DataImplementation()
+    public DataImplementation()
     {
-      MoveTimer = new Timer(Move, null, TimeSpan.Zero, TimeSpan.FromMilliseconds(16));
+      //
     }
 
     #endregion ctor
@@ -45,7 +45,12 @@ namespace TP.ConcurrentProgramming.Data
         upperLayerHandler(startingPosition, newBall);
         BallsList.Add(newBall);
       }
-      MoveTimer.Change(TimeSpan.Zero, TimeSpan.FromMilliseconds(50));
+        foreach (Ball ball in BallsList)
+        {
+            var thread = new Thread(() => BallThreadLoop(ball, _cts.Token));
+            _threads.Add(thread);
+            thread.Start();
+        }
       BallsListUpdated?.Invoke(BallsList.Cast<IBall>().ToList());
     }
 
@@ -54,15 +59,14 @@ namespace TP.ConcurrentProgramming.Data
         if (Disposed)
             throw new ObjectDisposedException(nameof(DataImplementation));
 
-        // Stop the movement timer
-        MoveTimer.Change(Timeout.Infinite, Timeout.Infinite);
-            lock (_ballsLock)
-            {
-                // Clear all balls from the simulation
-                BallsList.Clear();
-            }
-            BallsListUpdated?.Invoke(new List<IBall>());
+        _cts.Cancel(); // Signal threads to stop
+        lock (_ballsLock)
+        {
+            // Clear all balls from the simulation
+            BallsList.Clear();
         }
+        BallsListUpdated?.Invoke(new List<IBall>());
+    }
 
 
 
@@ -77,7 +81,7 @@ namespace TP.ConcurrentProgramming.Data
       {
         if (disposing)
         {
-          MoveTimer.Dispose();
+          //
           lock (_ballsLock)
              {
                 BallsList.Clear();
@@ -104,19 +108,23 @@ namespace TP.ConcurrentProgramming.Data
     //private bool disposedValue;
     private bool Disposed = false;
 
-    private readonly Timer MoveTimer;
     private Random RandomGenerator = new();
     private readonly object _ballsLock = new object();
 
     private List<Ball> BallsList = [];
-    
-    private void Move(object? x)
+
+    private CancellationTokenSource _cts = new CancellationTokenSource();
+    private List<Thread> _threads = new List<Thread>();
+
+
+
+        private void BallThreadLoop(Ball ball, CancellationToken token)
     {
-        lock (_ballsLock)
+        while (!token.IsCancellationRequested)
         {
-            foreach (Ball item in BallsList)
-            { 
-                item.Move();
+            lock (_ballsLock) // Ensure thread-safe access to shared resources
+            {
+                ball.Move();
             }
         }
 

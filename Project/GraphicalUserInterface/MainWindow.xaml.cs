@@ -9,6 +9,7 @@
 
 using System;
 using System.Windows;
+using System.Diagnostics;
 using TP.ConcurrentProgramming.Presentation.ViewModel;
 
 namespace TP.ConcurrentProgramming.PresentationView
@@ -36,7 +37,6 @@ namespace TP.ConcurrentProgramming.PresentationView
             MainWindowViewModel viewModel = (MainWindowViewModel)DataContext;
 
             int numberOfBalls = (int?)(upDownSelectBallNr.Value) ?? (int)(upDownSelectBallNr.DefaultValue);
-
 
             viewModel.Start(numberOfBalls);
             _startClicked = true;

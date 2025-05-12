@@ -62,7 +62,6 @@ namespace TP.ConcurrentProgramming.Data
 
         internal void Move()
         {
-            Console.WriteLine("moving");
             long currentTime = _stopwatch.ElapsedMilliseconds;
             double deltaTime = (currentTime - _previousTime) / 1000.0; //seconds
             deltaTime = deltaTime * 50;

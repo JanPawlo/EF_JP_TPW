@@ -7,6 +7,8 @@
 //  https://github.com/mpostol/TP/discussions/182
 //
 //_____________________________________________________________________________________________________________________________________
+using System.Diagnostics;
+
 
 namespace TP.ConcurrentProgramming.BusinessLogic
 {
@@ -41,7 +43,7 @@ namespace TP.ConcurrentProgramming.BusinessLogic
 
         public void Move()
         {
-            Console.WriteLine("This shouldn't be the Move called, the one called should be from Ball.cs");
+            Debug.WriteLine("This shouldn't be the Move called, the one called should be from Ball.cs");
         }
 
         private void RaisePositionChangeEvent(object? sender, Data.IVector e)

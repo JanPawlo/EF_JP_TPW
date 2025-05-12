@@ -61,12 +61,6 @@ namespace TP.ConcurrentProgramming.BusinessLogic
                 ball.SetOtherBalls(businessBalls);
             }
 
-            foreach (var ball in businessBalls)
-            {
-                var thread = new Thread(() => BallThreadLoop(ball, _cts.Token));
-                _threads.Add(thread);
-                thread.Start();
-            }
         }
 
         public override void Stop()
@@ -74,25 +68,12 @@ namespace TP.ConcurrentProgramming.BusinessLogic
 
             if (Disposed)
                 throw new ObjectDisposedException(nameof(BusinessLogicImplementation));
-            _cts.Cancel(); // Signal threads to stop
+
             lock (_ballsLock)
             {
                 businessBalls.Clear();
             }
             layerBellow.Stop();
-        }
-
-
-        private void BallThreadLoop(Ball ball, CancellationToken token)
-        {
-            while (!token.IsCancellationRequested)
-            {
-                lock (_ballsLock) // Ensure thread-safe access to shared resources
-                {
-                    ball.Move();
-                }
-            }
-            Console.WriteLine($"Ball {ball} thread stopped.");
         }
 
 
