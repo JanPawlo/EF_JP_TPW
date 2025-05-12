@@ -36,6 +36,8 @@ namespace TP.ConcurrentProgramming.BusinessLogic
         #region private
 
         private List<Ball> _otherBalls = new();
+        private readonly object _ballsLock = new object();
+
 
         private void RaisePositionChangeEvent(object? sender, Data.IVector e)
         {
@@ -53,7 +55,10 @@ namespace TP.ConcurrentProgramming.BusinessLogic
             if (e.x <= minX + radius)
             {
                 // Odbicie od lewej ściany
-                _dataBall.Velocity.x = -_dataBall.Velocity.x;
+                lock (_ballsLock)
+                { 
+                    _dataBall.Velocity.x = -_dataBall.Velocity.x;
+                }
                 _dataBall.Position.x = minX + radius + Math.Abs(_dataBall.Velocity.x); 
             }
             else if (e.x >= maxX - radius)

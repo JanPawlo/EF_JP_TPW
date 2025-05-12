@@ -66,8 +66,11 @@ namespace TP.ConcurrentProgramming.BusinessLogic
         {
             if (Disposed)
                 throw new ObjectDisposedException(nameof(BusinessLogicImplementation));
-
-            businessBalls.Clear();
+            
+            lock (_ballsLock)
+            {
+                businessBalls.Clear();
+            }
             layerBellow.Stop();
         }
 
@@ -78,6 +81,7 @@ namespace TP.ConcurrentProgramming.BusinessLogic
         private bool Disposed = false;
         private List<Ball> businessBalls = new();
         private readonly UnderneathLayerAPI layerBellow;
+        private readonly object _ballsLock = new object();
 
         #endregion private
 

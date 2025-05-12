@@ -77,8 +77,6 @@ namespace TP.ConcurrentProgramming.Data
             RaiseNewPositionChangeNotification();
         }
 
-
-
         #endregion private
     }
 }
