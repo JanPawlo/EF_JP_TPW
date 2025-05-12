@@ -54,26 +54,36 @@ namespace TP.ConcurrentProgramming.Data
       BallsListUpdated?.Invoke(BallsList.Cast<IBall>().ToList());
     }
 
-    public override void Stop()
-    {
-        if (Disposed)
-            throw new ObjectDisposedException(nameof(DataImplementation));
-
-        _cts.Cancel(); // Signal threads to stop
-        lock (_ballsLock)
+        public override void Stop()
         {
-            // Clear all balls from the simulation
-            BallsList.Clear();
+            _cts.Cancel(); // Signal threads to stop
+
+            // Wait for all threads to finish
+            foreach (var thread in _threads)
+            {
+                thread.Join(); // Wait for each thread to complete
+            }
+
+            _threads.Clear(); // Clear the threads list
+
+            lock (_ballsLock)
+            {
+                BallsList.Clear();
+            }
+
+            BallsListUpdated?.Invoke(new List<IBall>());
+
+            // Reset the CancellationTokenSource for potential future use
+            _cts.Dispose();
+            _cts = new CancellationTokenSource();
         }
-        BallsListUpdated?.Invoke(new List<IBall>());
-    }
 
 
 
 
         #endregion DataAbstractAPI
 
-        #region IDisposable
+            #region IDisposable
 
         protected virtual void Dispose(bool disposing)
     {
@@ -96,10 +106,26 @@ namespace TP.ConcurrentProgramming.Data
 
     public override void Dispose()
     {
-      // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-      Dispose(disposing: true);
+        _cts.Cancel();
+        foreach (var thread in _threads)
+        {
+            thread.Join();
+        }
+        _threads.Clear();
+        _cts.Dispose();
+
+        lock (_ballsLock)
+        {
+            BallsList.Clear();
+            BallsListUpdated?.Invoke(new List<IBall>());
+        }
+
+        // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+        Dispose(disposing: true);
       GC.SuppressFinalize(this);
     }
+
+
 
     #endregion IDisposable
 
@@ -127,6 +153,7 @@ namespace TP.ConcurrentProgramming.Data
                 ball.Move();
             }
         }
+        Debug.WriteLine("Thread over");
 
     }
 
