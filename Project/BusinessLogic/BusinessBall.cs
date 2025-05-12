@@ -39,6 +39,11 @@ namespace TP.ConcurrentProgramming.BusinessLogic
         private readonly object _ballsLock = new object();
 
 
+        public void Move()
+        {
+            Console.WriteLine("This shouldn't be the Move called, the one called should be from Ball.cs");
+        }
+
         private void RaisePositionChangeEvent(object? sender, Data.IVector e)
         {
             CheckCollisionWithWalls(e);
