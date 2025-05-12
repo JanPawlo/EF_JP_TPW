@@ -79,8 +79,13 @@ namespace TP.ConcurrentProgramming.Presentation.ViewModel.Test
       {
         Started = numberOfBalls;
       }
+      
+            public override void Stop()
+            {
+                throw new NotImplementedException();
+            }
 
-      public override IDisposable Subscribe(IObserver<ModelIBall> observer)
+            public override IDisposable Subscribe(IObserver<ModelIBall> observer)
       {
         Subscribed++;
         return new NullDisposable();
@@ -131,8 +136,12 @@ namespace TP.ConcurrentProgramming.Presentation.ViewModel.Test
           BallChanged?.Invoke(this, new BallChaneEventArgs() { Ball = newBall });
         }
       }
+            public override void Stop()
+            {
+                // No action needed for this test
+            }
 
-      public override void Dispose()
+            public override void Dispose()
       {
         Disposed = true;
       }

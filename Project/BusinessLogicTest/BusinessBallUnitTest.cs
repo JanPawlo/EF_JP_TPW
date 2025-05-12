@@ -28,7 +28,8 @@ namespace TP.ConcurrentProgramming.BusinessLogic.Test
 
     private class DataBallFixture : Data.IBall
     {
-      public Data.IVector Velocity { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+      public Data.IVector Velocity { get; set; } = new VectorFixture(1.0, 1.0);
+      public Data.IVector Position { get; set; } = new VectorFixture(1.0, 1.0);
 
       public event EventHandler<Data.IVector>? NewPositionNotification;
 
@@ -45,8 +46,8 @@ namespace TP.ConcurrentProgramming.BusinessLogic.Test
         x = X; y = Y;
       }
 
-      public double x { get; init; }
-      public double y { get; init; }
+      public double x { get; set; }
+      public double y { get; set; }
     }
 
     #endregion testing instrumentation
