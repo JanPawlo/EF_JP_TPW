@@ -40,29 +40,33 @@ namespace TP.ConcurrentProgramming.BusinessLogic
         private List<Ball> _otherBalls = new();
         private readonly object _ballsLock = new object();
 
+        private readonly object _positionLock = new();
 
         private void RaisePositionChangeEvent(object? sender, Data.IVector e)
         {
-            
-            CheckCollisionWithWalls(e);
-            CheckCollisionWithOtherBalls();
-            NewPositionNotification?.Invoke(this, new Position(e.x, e.y));
+            lock (_positionLock)
+            {
+                CheckCollisionWithWalls(e);
+                CheckCollisionWithOtherBalls();
+                NewPositionNotification?.Invoke(this, new Position(e.x, e.y));
+            }
         }
+
 
         private void CheckCollisionWithWalls(Data.IVector e)
         {
             double minX = 0, maxX = 400, minY = 0, maxY = 420;
-            double radius = 10;
+            double radius = 15;
 
             // Kolizja z lewą i prawą ścianą (oś X)
-            if (e.x <= minX + radius)
+            if (e.x <= minX + 5)
             {
                 // Odbicie od lewej ściany
-                lock (_ballsLock)
-                { 
-                    _dataBall.Velocity.x = -_dataBall.Velocity.x;
-                }
-                _dataBall.Position.x = minX + radius + Math.Abs(_dataBall.Velocity.x); 
+                
+                 
+                _dataBall.Velocity.x = -_dataBall.Velocity.x;
+            
+                _dataBall.Position.x = minX + 5 + Math.Abs(_dataBall.Velocity.x); 
             }
             else if (e.x >= maxX - radius)
             {
@@ -72,11 +76,11 @@ namespace TP.ConcurrentProgramming.BusinessLogic
             }
 
             // Kolizja z górną i dolną ścianą (oś Y)
-            if (e.y <= minY + radius)
+            if (e.y <= minY + 5)
             {
                 // Odbicie od górnej ściany
                 _dataBall.Velocity.y = -_dataBall.Velocity.y;
-                _dataBall.Position.y = minY + radius + Math.Abs(_dataBall.Velocity.y); 
+                _dataBall.Position.y = minY + 5 + Math.Abs(_dataBall.Velocity.y); 
             }
             else if (e.y >= maxY - radius)
             {
@@ -89,34 +93,41 @@ namespace TP.ConcurrentProgramming.BusinessLogic
 
         private void CheckCollisionWithOtherBalls()
         {
-            if (_otherBalls == null) return;
-
-            double radius = 10;
-
             foreach (var other in _otherBalls)
             {
                 if (other == this) continue;
 
+                // Sprawdź czy są w kolizji
                 var dx = _dataBall.Position.x - other._dataBall.Position.x;
                 var dy = _dataBall.Position.y - other._dataBall.Position.y;
                 var distSq = dx * dx + dy * dy;
-                var minDist = 2 * radius;
+                var minDist = 20;
 
                 if (distSq <= minDist * minDist)
                 {
-                    // odbicie idealnie sprezyste (dla tej samej masy)
-                    var temp = _dataBall.Velocity;
-                    _dataBall.Velocity = other._dataBall.Velocity;
-                    other._dataBall.Velocity = temp;
-                    // przesunięcie kul, aby nie nachodziły na siebie
-                    other._dataBall.Position.x += other._dataBall.Velocity.x;
-                    other._dataBall.Position.y += other._dataBall.Velocity.y;
-                    _dataBall.Position.x += _dataBall.Velocity.x;
-                    _dataBall.Position.y += _dataBall.Velocity.y;
+                    object firstLock = this.GetHashCode() < other.GetHashCode() ? this : other;
+                    object secondLock = this.GetHashCode() < other.GetHashCode() ? other : this;
 
+                    lock (firstLock)
+                    {
+                        lock (secondLock)
+                        {
+                            // odbicie idealnie sprezyste (dla tej samej masy)
+                            var temp = _dataBall.Velocity;
+                            _dataBall.Velocity = other._dataBall.Velocity;
+                            other._dataBall.Velocity = temp;
+
+                            // przesunięcie kul, aby nie nachodziły na siebie
+                            other._dataBall.Position.x += other._dataBall.Velocity.x;
+                            other._dataBall.Position.y += other._dataBall.Velocity.y;
+                            _dataBall.Position.x += _dataBall.Velocity.x;
+                            _dataBall.Position.y += _dataBall.Velocity.y;
+                        }
+                    }
                 }
             }
         }
+
 
 
         #endregion private
