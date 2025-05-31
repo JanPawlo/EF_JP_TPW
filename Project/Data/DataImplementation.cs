@@ -99,14 +99,24 @@ namespace TP.ConcurrentProgramming.Data
              }
              }
                 Disposed = true;
+                _cts.Cancel();
+                foreach (var thread in _threads)
+                {
+                    thread.Join();
+                }
+                _threads.Clear();
+                _cts.Dispose();
+
             }
-      else
+
+            else
         throw new ObjectDisposedException(nameof(DataImplementation));
     }
 
     public override void Dispose()
     {
-        _cts.Cancel();
+        /*
+         _cts.Cancel();
         foreach (var thread in _threads)
         {
             thread.Join();
@@ -119,7 +129,7 @@ namespace TP.ConcurrentProgramming.Data
             BallsList.Clear();
             BallsListUpdated?.Invoke(new List<IBall>());
         }
-
+        **/
         // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
         Dispose(disposing: true);
       GC.SuppressFinalize(this);
@@ -146,22 +156,38 @@ namespace TP.ConcurrentProgramming.Data
 
         private void BallThreadLoop(Ball ball, CancellationToken token)
     {
-        while (!token.IsCancellationRequested)
-        {
-            lock (_ballsLock) // Ensure thread-safe access to shared resources
+            const int frameTimeMs = 20; // 50 FPS
+            while (!token.IsCancellationRequested)
             {
-                ball.Move();
+                long frameStart = Environment.TickCount64;
+
+                lock (_ballsLock)
+                {
+                    ball.Move();
+                }
+
+                long frameEnd = Environment.TickCount64;
+                long elapsed = frameEnd - frameStart;
+                long sleepTime = frameTimeMs - elapsed;
+
+                if (sleepTime > 0)
+                {
+                    Thread.Sleep((int)sleepTime);
+                }
+                else
+                {
+                    // Real-time constraint missed — diagnostyka
+                    Debug.WriteLine($"Frame processing took too long: {elapsed} ms for ball at position {ball.Position} with velocity {ball.Velocity}.");
+                }
             }
+
         }
-        Debug.WriteLine("Thread over");
 
-    }
+        #endregion private
 
-    #endregion private
+        #region TestingInfrastructure
 
-    #region TestingInfrastructure
-
-    [Conditional("DEBUG")]
+        [Conditional("DEBUG")]
     internal void CheckBallsList(Action<IEnumerable<IBall>> returnBallsList)
     {
       returnBallsList(BallsList);

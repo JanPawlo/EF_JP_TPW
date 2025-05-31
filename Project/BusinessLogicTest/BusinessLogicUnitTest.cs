@@ -129,7 +129,7 @@ namespace TP.ConcurrentProgramming.BusinessLogic.Test
         public IVector Velocity { get; set; } =  new DataVectorFixture();
         public IVector Position { get; set; } =  new DataVectorFixture();
 
-                public event EventHandler<IVector>? NewPositionNotification;
+        public event EventHandler<IVector>? NewPositionNotification;
       }
     }
 

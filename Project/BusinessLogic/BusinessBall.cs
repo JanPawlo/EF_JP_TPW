@@ -43,6 +43,7 @@ namespace TP.ConcurrentProgramming.BusinessLogic
 
         private void RaisePositionChangeEvent(object? sender, Data.IVector e)
         {
+            
             CheckCollisionWithWalls(e);
             CheckCollisionWithOtherBalls();
             NewPositionNotification?.Invoke(this, new Position(e.x, e.y));
