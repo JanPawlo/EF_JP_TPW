@@ -62,17 +62,16 @@ namespace TP.ConcurrentProgramming.BusinessLogic
             if (e.x <= minX + 5)
             {
                 // Odbicie od lewej ściany
-                
-                 
                 _dataBall.Velocity.x = -_dataBall.Velocity.x;
-            
-                _dataBall.Position.x = minX + 5 + Math.Abs(_dataBall.Velocity.x); 
+                _dataBall.Position.x = minX + 5 + Math.Abs(_dataBall.Velocity.x);
+                LogCollision("Wall collision left X: " + _dataBall.Position.x.ToString() + " Y: " + _dataBall.Position.y.ToString());
             }
             else if (e.x >= maxX - radius)
             {
                 // Odbicie od prawej ściany
                 _dataBall.Velocity.x = -_dataBall.Velocity.x;
                 _dataBall.Position.x = maxX - radius - Math.Abs(_dataBall.Velocity.x);
+                LogCollision("Wall collision right X: " + _dataBall.Position.x.ToString() + " Y: " + _dataBall.Position.y.ToString());
             }
 
             // Kolizja z górną i dolną ścianą (oś Y)
@@ -80,13 +79,15 @@ namespace TP.ConcurrentProgramming.BusinessLogic
             {
                 // Odbicie od górnej ściany
                 _dataBall.Velocity.y = -_dataBall.Velocity.y;
-                _dataBall.Position.y = minY + 5 + Math.Abs(_dataBall.Velocity.y); 
+                _dataBall.Position.y = minY + 5 + Math.Abs(_dataBall.Velocity.y);
+                LogCollision("Wall collision top X: " + _dataBall.Position.x.ToString() + " Y: " + _dataBall.Position.y.ToString());
             }
             else if (e.y >= maxY - radius)
             {
                 // Odbicie od dolnej ściany
                 _dataBall.Velocity.y = -_dataBall.Velocity.y;
-                _dataBall.Position.y = maxY - radius - Math.Abs(_dataBall.Velocity.y); 
+                _dataBall.Position.y = maxY - radius - Math.Abs(_dataBall.Velocity.y);
+                LogCollision("Wall collision bottom X: " + _dataBall.Position.x.ToString() + " Y: " + _dataBall.Position.y.ToString());
             }
         }
 
@@ -105,6 +106,7 @@ namespace TP.ConcurrentProgramming.BusinessLogic
 
                 if (distSq <= minDist * minDist)
                 {
+                    LogCollision("Ball collision X: " + _dataBall.Position.x.ToString() + " Y: " + _dataBall.Position.y.ToString());
                     object firstLock = this.GetHashCode() < other.GetHashCode() ? this : other;
                     object secondLock = this.GetHashCode() < other.GetHashCode() ? other : this;
 
@@ -128,6 +130,30 @@ namespace TP.ConcurrentProgramming.BusinessLogic
             }
         }
 
+
+
+        private readonly object _fileLock = new();
+
+        private void LogCollision(string message)
+        {
+            string logEntry = $"[{DateTime.Now}] {message}\n";
+            string logFilePath = "collisions_log.txt";
+
+                // Offload file writing to ThreadPool
+                Task.Run(() => {
+                try
+                {
+                    lock (_fileLock)
+                    {
+                        File.AppendAllText(logFilePath, logEntry);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Log failed: {ex.Message}");
+                }
+            });
+        }
 
 
         #endregion private

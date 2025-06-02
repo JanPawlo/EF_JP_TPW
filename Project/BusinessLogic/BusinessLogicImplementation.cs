@@ -50,6 +50,7 @@ namespace TP.ConcurrentProgramming.BusinessLogic
 
             layerBellow.Start(numberOfBalls, (startingPosition, databall) =>
             {
+
                 var ball = new Ball(databall);
                 businessBalls.Add(ball);
 

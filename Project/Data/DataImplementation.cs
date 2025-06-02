@@ -10,6 +10,9 @@
 
 using System;
 using System.Diagnostics;
+using System.Collections.Concurrent;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace TP.ConcurrentProgramming.Data
 {
@@ -183,11 +186,13 @@ namespace TP.ConcurrentProgramming.Data
 
         }
 
-        #endregion private
 
-        #region TestingInfrastructure
 
-        [Conditional("DEBUG")]
+            #endregion private
+
+            #region TestingInfrastructure
+
+            [Conditional("DEBUG")]
     internal void CheckBallsList(Action<IEnumerable<IBall>> returnBallsList)
     {
       returnBallsList(BallsList);
