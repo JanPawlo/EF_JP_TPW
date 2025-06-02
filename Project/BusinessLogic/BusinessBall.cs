@@ -132,27 +132,9 @@ namespace TP.ConcurrentProgramming.BusinessLogic
 
 
 
-        private readonly object _fileLock = new();
-
         private void LogCollision(string message)
         {
-            string logEntry = $"[{DateTime.Now}] {message}\n";
-            string logFilePath = "collisions_log.txt";
-
-                // Offload file writing to ThreadPool
-                Task.Run(() => {
-                try
-                {
-                    lock (_fileLock)
-                    {
-                        File.AppendAllText(logFilePath, logEntry);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Log failed: {ex.Message}");
-                }
-            });
+            DiagnosticLogger.Instance.LogCollision(message);
         }
 
 
