@@ -45,7 +45,13 @@ namespace TP.ConcurrentProgramming.Data
     #endregion private
   }
 
-  public interface IVector
+    public interface IDiagnosticLogger : IDisposable
+    {
+        void LogCollision(string message);
+        void Dispose();
+    }
+
+    public interface IVector
   {
     /// <summary>
     /// The X component of the vector.

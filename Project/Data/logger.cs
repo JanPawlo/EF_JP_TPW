@@ -3,13 +3,10 @@ using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
+using TP.ConcurrentProgramming.Data;
 
-namespace TP.ConcurrentProgramming.BusinessLogic
+namespace TP.ConcurrentProgramming.Data
 {
-    public interface IDiagnosticLogger : IDisposable
-    {
-        void LogCollision(string message);
-    }
 
     public sealed class DiagnosticLogger : IDiagnosticLogger
     {
