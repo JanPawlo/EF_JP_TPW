@@ -158,41 +158,49 @@ namespace TP.ConcurrentProgramming.Data
 
 
         private void BallThreadLoop(Ball ball, CancellationToken token)
-    {
-            const int frameTimeMs = 20; // 50 FPS
-            while (!token.IsCancellationRequested)
+        {
+            const int frameTimeMs = 20; // Target: 50 FPS (1000ms / 50 = 20ms per frame)
+            Timer timer = null;
+
+            // Timer callback (executed on a ThreadPool thread)
+            TimerCallback timerCallback = _ =>
             {
-                long frameStart = Environment.TickCount64;
-
-                lock (_ballsLock)
+                try
                 {
-                    ball.Move();
+                    if (token.IsCancellationRequested)
+                    {
+                        timer?.Dispose(); // Stop the timer if cancellation is requested
+                        return;
+                    }
+
+                    lock (_ballsLock)
+                    {
+                        ball.Move();
+                    }
                 }
-
-                long frameEnd = Environment.TickCount64;
-                long elapsed = frameEnd - frameStart;
-                long sleepTime = frameTimeMs - elapsed;
-
-                if (sleepTime > 0)
+                catch (Exception ex)
                 {
-                    Thread.Sleep((int)sleepTime);
+                    Debug.WriteLine($"Ball update error: {ex.Message}");
                 }
-                else
-                {
-                    // Real-time constraint missed — diagnostyka
-                    Debug.WriteLine($"Frame processing took too long: {elapsed} ms for ball at position {ball.Position} with velocity {ball.Velocity}.");
-                }
-            }
+            };
 
+            // Create and start the timer (first run immediately, then every `frameTimeMs`)
+            timer = new Timer(timerCallback, null, 0, frameTimeMs);
+
+            // Ensure cleanup when cancellation is requested
+            token.Register(() =>
+            {
+                timer?.Dispose();
+            });
         }
 
 
 
-            #endregion private
+        #endregion private
 
-            #region TestingInfrastructure
+        #region TestingInfrastructure
 
-            [Conditional("DEBUG")]
+        [Conditional("DEBUG")]
     internal void CheckBallsList(Action<IEnumerable<IBall>> returnBallsList)
     {
       returnBallsList(BallsList);
